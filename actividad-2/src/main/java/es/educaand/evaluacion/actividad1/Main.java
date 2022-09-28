@@ -1,4 +1,4 @@
-package es.educaand.rruirey.evaluacion.actividad2;
+package es.educaand.evaluacion.actividad1;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -13,9 +13,9 @@ import java.util.function.Supplier;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-public class Actividad2 {
+public class Main {
 
-  private static final Logger LOGGER = Logger.getLogger(Actividad2.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
   private static final Random RANDOM = new Random();
 
   private final List<Persona> personas = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Actividad2 {
       return;
     }
 
-    new Actividad2().load();
+    new Main().load();
   }
 
   public void load() throws Exception {
@@ -36,16 +36,16 @@ public class Actividad2 {
     int total = scanner.nextInt();
 
     for (int i = 0; i < total; i++) {
-      personas.add(
-          new Persona(
-              randomData(PersonaData.NAME),
-              randomData(PersonaData.SURNAME),
-              DNIUtils.generateDNI(),
-              randomData(PersonaData.EMAIL),
-              randomData(PersonaData.CITY) + ", " + randomData(PersonaData.ADDRESS),
-              randomData(PersonaData.POSTAL_CODE)
-          )
+      final Persona persona = new Persona(
+          randomData(PersonaData.NAME),
+          randomData(PersonaData.SURNAME),
+          DNIUtils.generateDNI(),
+          randomData(PersonaData.EMAIL),
+          randomData(PersonaData.CITY) + ", " + randomData(PersonaData.ADDRESS),
+          randomData(PersonaData.POSTAL_CODE)
       );
+
+      personas.add(persona);
     }
 
     for (Persona persona : personas) {
