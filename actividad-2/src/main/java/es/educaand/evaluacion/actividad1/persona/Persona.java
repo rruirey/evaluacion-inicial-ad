@@ -1,4 +1,4 @@
-package es.educaand.evaluacion.actividad1;
+package es.educaand.evaluacion.actividad1.persona;
 
 public class Persona {
 

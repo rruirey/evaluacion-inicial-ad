@@ -1,4 +1,4 @@
-package es.educaand.evaluacion.actividad1;
+package es.educaand.evaluacion.actividad1.util;
 
 import java.util.Random;
 
