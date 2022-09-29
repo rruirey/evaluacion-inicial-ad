@@ -31,15 +31,17 @@ public class Main {
     int total = scanner.nextInt();
 
     for (int i = 0; i < total; i++) {
+      final String dni = DNIUtils.generateDNI();
+      final String address = randomData(PersonaData.CITY) + ", " + randomData(PersonaData.ADDRESS);
+
       final Persona persona = new Persona(
           randomData(PersonaData.NAME),
           randomData(PersonaData.SURNAME),
-          DNIUtils.generateDNI(),
+          dni,
           randomData(PersonaData.EMAIL),
-          randomData(PersonaData.CITY) + ", " + randomData(PersonaData.ADDRESS),
+          address,
           randomData(PersonaData.POSTAL_CODE)
       );
-
       personas.add(persona);
     }
 
