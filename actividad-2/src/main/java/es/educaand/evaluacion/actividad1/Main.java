@@ -21,11 +21,6 @@ public class Main {
   private final List<Persona> personas = new ArrayList<>();
 
   public static void main(String[] args) throws Exception {
-    if (args.length == 0) {
-      LOGGER.severe("You must provide a file name.");
-      return;
-    }
-
     new Main().load();
   }
 
@@ -54,9 +49,10 @@ public class Main {
   }
 
   private String randomData(PersonaData data) throws Exception {
-    final URL url = getClass().getClassLoader().getResource(data.getFileName());
+    final String fileName = data.getFileName();
+    final URL url = getClass().getClassLoader().getResource(fileName);
     if (url == null) {
-      throw new FileNotFoundException("Could not find provided file");
+      throw new FileNotFoundException("Could not find provided file named " + fileName);
     }
 
     Supplier<Stream<String>> supplier = () -> {

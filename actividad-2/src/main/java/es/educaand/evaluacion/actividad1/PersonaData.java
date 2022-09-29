@@ -2,7 +2,7 @@ package es.educaand.evaluacion.actividad1;
 
 public enum PersonaData {
 
-  NAME("nombres.csv"),
+  NAME("names.csv"),
   SURNAME("surnames.csv"),
   EMAIL("emails.csv"),
   CITY("cities.csv"),
