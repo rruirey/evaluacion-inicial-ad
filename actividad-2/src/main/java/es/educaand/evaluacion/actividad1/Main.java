@@ -28,28 +28,10 @@ public class Main {
     System.out.print("Introduce el numero de personas a generar: ");
     int total = scanner.nextInt();
 
-    for (int i = 0; i < total; i++) {
-      final String name = manager.randomDataFrom(PersonaData.NAME);
-      final String surname = manager.randomDataFrom(PersonaData.SURNAME);
-      final String dni = DNIUtils.generateDNI();
-      final String email = EmailUtils.randomEmail(
-          name,
-          surname,
-          dni
-      );
+    List<Persona> personas = manager.generate(total);
+    personas.forEach(manager::createPersona);
 
-      final Persona persona = new Persona(
-          name,
-          surname,
-          dni,
-          email,
-          manager.randomDataFrom(PersonaData.CITY) + ", " + manager.randomDataFrom(PersonaData.ADDRESS),
-          manager.randomDataFrom(PersonaData.POSTAL_CODE)
-      );
-      manager.createPersona(persona);
-    }
-
-    for (Persona persona : manager.getPersonas()) {
+    for (Persona persona : personas) {
       System.out.println(persona);
     }
   }

@@ -1,5 +1,8 @@
 package es.educaand.evaluacion.actividad1.persona;
 
+import es.educaand.evaluacion.actividad1.util.DNIUtils;
+import es.educaand.evaluacion.actividad1.util.EmailUtils;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -23,6 +26,35 @@ public class PersonaManager {
    */
   public void createPersona(Persona persona) {
     personas.add(persona);
+  }
+
+  /**
+   * Generates given {@code number} amount of {@link Persona}
+   *
+   * @param number - the number of personas to generate.
+   * @return a list of generated personas.
+   * @throws FileNotFoundException - when random data accessor could not find its file.
+   */
+  public List<Persona> generate(int number) throws FileNotFoundException {
+    final List<Persona> personas = new ArrayList<>(number);
+    for (int i = 0; i < number; i++) {
+      final String name = randomDataFrom(PersonaData.NAME);
+      final String surname = randomDataFrom(PersonaData.SURNAME);
+      final String dni = DNIUtils.generateDNI();
+      personas.add(new Persona(
+          name,
+          surname,
+          dni,
+          EmailUtils.randomEmail(
+              name,
+              surname,
+              dni
+          ),
+          randomDataFrom(PersonaData.CITY) + ", " + randomDataFrom(PersonaData.ADDRESS),
+          randomDataFrom(PersonaData.POSTAL_CODE)
+      ));
+    }
+    return personas;
   }
 
   /**
